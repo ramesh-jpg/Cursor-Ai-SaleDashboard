@@ -1,0 +1,31 @@
+package com.cursorai.profitai.Controller;
+
+import com.cursorai.profitai.Model.Sales;
+import com.cursorai.profitai.Service.SalesService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/Sales")
+public class SalesController {
+
+    @Autowired
+    private SalesRepository salesService;
+
+    @GetMapping("/toptensales")
+    public List<Sales> getToptenSales() {
+        return dashboardService.getToptenSales();
+    }
+
+    @GetMapping("/toptencustomers")
+    public List<Object[]> getToptenCustomers() {
+        return dashboardService.getToptenCustomers();
+    }
+
+    @GetMapping("/monthlsales")
+    public List<Object[]> getMonthWiseSales() {
+        return dashboardService.getMonthWiseSales();
+    }
+}
