@@ -11,9 +11,9 @@ public interface SalesRepository extends JpaRepository<Sales, Long> {
     @Query(value = "SELECT * FROM sales ORDER BY amount DESC LIMIT 10")
     List<Sales> findToptenSales();
 
-    @Query(value = "SELECT customer_name, SUM(amount) as total FROM sales GROUP BY customer_name ORDER BY total DESC LIMIT 10")
+    @Query(value = "SELECT customer_name, SUM(amount) as total FROM sales GROUP BY customer_name ORDER BY total DESC LIMIT 10", nativeQuery = true)
     List<Object[]> findToptenCustomers();
 
-    @Query(value = "SELECT DATE_TRUNC('month', sale_date) as month, SUM(amount) as total FROM sales GROUP BY month ORDER BY month")
+    @Query(value = "SELECT DATE_TRUNC('month', sale_date) as month, SUM(amount) as total FROM sales GROUP BY month ORDER BY month",nativeQuery = true)
     List<Object[]> findMonthWiseSales();
 } 
